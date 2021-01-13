@@ -62,5 +62,6 @@ docs
 coverage
 database/
 system-user-*.json
+run-test.sh
 
 !README.md

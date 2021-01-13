@@ -1,7 +1,7 @@
 module.exports = {
   env: 'dev',
-  networkURL: 'https://testnet3.fullstack.cash/v3/',
+  networkURL: process.env.RESTURL ? process.env.RESTURL : 'https://testnet3.fullstack.cash/v4/',
   network: 'testnet',
-  tokenID: process.env.tokenID,
+  tokenID: process.env.TOKENID,
   WIF: process.env.WIF
 }
