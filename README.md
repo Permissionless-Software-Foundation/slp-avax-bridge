@@ -5,3 +5,4 @@ This is a prototype node.js JavaScript library for transferring tokens between t
 
 # Licence
 [MIT](LICENSE.md)
+test
