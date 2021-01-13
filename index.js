@@ -10,7 +10,9 @@
 const BCHJS = require('@psf/bch-js')
 
 const Util = require('./lib/util')
+const BCHLib = require('./lib/bch')
 const util = new Util()
+const bch = new BCHLib()
 
 let _this // local global for 'this'.
 
@@ -20,6 +22,7 @@ class BoilplateLib {
 
     _this.bchjs = new BCHJS()
     _this.util = util
+    _this.bch = bch
   }
 }
 

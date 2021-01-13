@@ -8,7 +8,7 @@
 logs/*.json
 *.log
 npm-debug.log*
-
+**/yarn.lock
 # Runtime data
 pids
 *.pid
