@@ -35,11 +35,14 @@ describe('#bch.js', () => {
 
         assert.equal(true, false, 'unexpected result')
       } catch (err) {
-        assert.include(err.message, 'Token quantity must be higher than 0')
+        assert.include(
+          err.message,
+          'Token quantity must be a number higher than 0'
+        )
       }
     })
 
-    it('should throw error if there are no utxo to work with', async () => {
+    it('should throw error if there are no utxos to work with', async () => {
       try {
         sandbox.stub(uut.bchjs.Electrumx, 'utxo').resolves(mockData.mockUtxos)
 
@@ -120,26 +123,21 @@ describe('#bch.js', () => {
     })
 
     it('should complete successfully and mint the tokens', async () => {
-      try {
-        sandbox
-          .stub(uut.bchjs.SLP.Utils, 'tokenUtxoDetails')
-          .resolves(mockData.mockValidUtxos.utxos)
-        sandbox
-          .stub(uut.bchjs.Electrumx, 'utxo')
-          .resolves(mockData.mockValidUtxos)
-        sandbox
-          .stub(uut.bchjs.RawTransactions, 'sendRawTransaction')
-          .resolves(mockData.mockTxid)
+      sandbox
+        .stub(uut.bchjs.SLP.Utils, 'tokenUtxoDetails')
+        .resolves(mockData.mockValidUtxos.utxos)
+      sandbox
+        .stub(uut.bchjs.Electrumx, 'utxo')
+        .resolves(mockData.mockValidUtxos)
+      sandbox
+        .stub(uut.bchjs.RawTransactions, 'sendRawTransaction')
+        .resolves(mockData.mockTxid)
 
-        const num = 5
+      const num = 5
 
-        const txid = await uut.mintSlp(num)
+      const txid = await uut.mintSlp(num)
 
-        assert.typeOf(txid, 'string')
-      } catch (err) {
-        console.log(err)
-        assert.equal(true, false, 'unexpected result')
-      }
+      assert.typeOf(txid, 'string')
     })
   })
 })

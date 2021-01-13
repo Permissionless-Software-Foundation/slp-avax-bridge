@@ -13,11 +13,12 @@ describe('#bch.js', () => {
       try {
         const num = 5
         const txid = await uut.mintSlp(num)
+        // console.log(`txid: ${JSON.stringify(txid, null, 2)}`)
 
         assert.typeOf(txid, 'string')
       } catch (err) {
         console.log(err)
-        assert.equal(true, false, 'unexpected result')
+        assert.fail('unexpected result')
       }
     })
   })
