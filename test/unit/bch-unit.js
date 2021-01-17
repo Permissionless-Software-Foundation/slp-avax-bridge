@@ -206,7 +206,7 @@ describe('#bch.js', () => {
       }
     })
 
-    it("should throw an error if there isn't enought founds to pay the transaction", async () => {
+    it("should throw an error if there isn't enough founds to pay the transaction", async () => {
       try {
         sandbox
           .stub(uut.bchjs.SLP.Utils, 'tokenUtxoDetails')
@@ -227,7 +227,7 @@ describe('#bch.js', () => {
       }
     })
 
-    it("should throw an error if there isn't enought founds to pay the transaction", async () => {
+    it("should throw an error if there isn't enough founds to pay the transaction", async () => {
       sandbox
         .stub(uut.bchjs.SLP.Utils, 'tokenUtxoDetails')
         .resolves(mockData.mockValidUtxos.utxos)
