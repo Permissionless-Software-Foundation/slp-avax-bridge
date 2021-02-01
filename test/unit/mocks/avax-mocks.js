@@ -1,30 +1,66 @@
-const { BN } = require('avalanche')
+const config = require('../../../config')
 
-const addresses = ['X-avax13c29zyftvjfs4un7aekjm8yn6vpsn3czug7l6e']
+const { BN, BinTools, Avalanche } = require('avalanche')
+const avm = require('avalanche/dist/apis/avm')
+const binTools = BinTools.getInstance()
+
+const avaxNode = new Avalanche(config.AVAX_IP, config.AVAX_PORT)
+
+const pair = avaxNode
+  .XChain()
+  .keyChain()
+  .importKey(config.AVAX_PRIVATE_KEY)
+
+const addressStrings = [pair.getAddressString()]
+const addresses = [pair.getAddress()]
+const avaxString = 'FvwEAhmxKfeiG8SnEvq42hc6whRyY3EFYAvebMqDNDGCgxN5Z'
+const avaxID = binTools.cb58Decode(avaxString)
+const assetId = binTools.cb58Decode(config.AVAX_TOKEN)
 
 const txid = 'aCvBmRoD6ARCXjCVJqEHWnrVeH6Ax5Mon5pYgRuz18RnZtWrw'
 
-const txFee = new BN(1000000)
+// UTXOS and UTXOSets
+const emptyUTXOSet = new avm.UTXOSet()
 
-const invalidBalance = { balance: '0', utxoIDs: [] }
-const validBalance = {
-  balance: '1963000000',
-  utxoIDs: [
-    {
-      txID: 'un92aCRSdKMsyk7n2KAvTqzZXQ4ZcUobGCjzTEX9AxMa4ezet',
-      outputIndex: 0
-    },
-    {
-      txID: '2VTDrRde3kDJTmmFhd2ZvZYR2uKkgLWmepFKFK2zPz1mTF1Lha',
-      outputIndex: 0
-    }
-  ]
-}
+const codecID = binTools.fromBNToBuffer(new BN(0))
+
+const UTXOWithoutFee = new avm.UTXOSet()
+const smallUTXO = new avm.UTXO(
+  codecID,
+  binTools.cb58Decode('2TKfT1LrPbHYLdjiZYXRfLJ2L7yeELSyGykBikMji3mP92oW1h'),
+  binTools.cb58Decode('1111XiaYg'),
+  avaxID,
+  new avm.SECPTransferOutput(new BN(200), addresses)
+)
+UTXOWithoutFee.add(smallUTXO)
+
+const UTXOWithoutToken = new avm.UTXOSet()
+const UTXOwithFounds = new avm.UTXO(
+  codecID,
+  binTools.cb58Decode('2TKfT1LrPbHYLdjiZYXRfLJ2L7yeELSyGykBikMji3mP92oW1h'),
+  binTools.cb58Decode('1111XiaYg'),
+  avaxID,
+  new avm.SECPTransferOutput(new BN(10000000000), addresses)
+)
+UTXOWithoutToken.add(UTXOwithFounds)
+
+const UTXOWithToken = new avm.UTXOSet()
+const UTXOMintToken = new avm.UTXO(
+  codecID,
+  binTools.cb58Decode('2TKfT1LrPbHYLdjiZYXRfLJ2L7yeELSyGykBikMji3mP92oW1h'),
+  binTools.cb58Decode('111AZw1it'),
+  assetId,
+  new avm.SECPMintOutput(addresses)
+)
+UTXOWithToken.add(UTXOwithFounds)
+UTXOWithToken.add(UTXOMintToken)
 
 module.exports = {
-  addresses,
   txid,
-  txFee,
-  invalidBalance,
-  validBalance
+  addresses,
+  addressStrings,
+  emptyUTXOSet,
+  UTXOWithoutFee,
+  UTXOWithoutToken,
+  UTXOWithToken
 }

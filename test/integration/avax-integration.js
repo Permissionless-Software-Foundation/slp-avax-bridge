@@ -12,7 +12,7 @@ describe('#avax.js', () => {
     it('should complete successfully and mint the tokens', async () => {
       try {
         const num = 10
-        const txid = await uut.mintTokens(num)
+        const txid = await uut.mintToken(num)
 
         assert.typeOf(txid, 'string')
       } catch (err) {

@@ -7,7 +7,6 @@ module.exports = {
 
   AVAX_IP: process.env.AVAX_IP || '78.47.131.51',
   AVAX_PORT: process.env.AVAX_PORT || '9650',
-  AVAX_TOKEN: process.env.AVAX_TOKEN || 'fKqrfqzrXtb853zq8UrtX7kjtoBgjVZVTg2xQXpwy8bcLWDoy',
-  AVAX_USER: process.env.AVAX_USER || 'avalanche_test',
-  AVAX_PASSWORD: process.env.AVAX_PASSWORD || 'XAE12*'
+  AVAX_PRIVATE_KEY: 'PrivateKey-xRXf1B6RotiCrHDn5QGhpwJs9wwPJVhn4JptnZLq27pqf92LW',
+  AVAX_TOKEN: process.env.AVAX_TOKEN || '1MWQgvmpeb6nsprdyaCRP3P5qnmbEDLRPzXYmKY5ySpuciGRU'
 }
