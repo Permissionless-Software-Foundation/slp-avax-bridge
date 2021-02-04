@@ -19,10 +19,7 @@ describe('#avax.js', () => {
   let mockData
 
   beforeEach(() => {
-    // Restore the sandbox before each test.
     sandbox = sinon.createSandbox()
-
-    // Clone the mock data.
     mockData = cloneDeep(mockDataLib)
     uut.config = { ...config }
   })
