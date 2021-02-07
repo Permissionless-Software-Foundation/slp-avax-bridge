@@ -38,7 +38,7 @@ const UTXOwithFounds = new avm.UTXO(
 )
 UTXOWithoutToken.add(UTXOwithFounds)
 
-const UTXOWithToken = new avm.UTXOSet()
+const UTXOWithMintToken = new avm.UTXOSet()
 const UTXOMintToken = new avm.UTXO(
   codecID,
   binTools.cb58Decode('2TKfT1LrPbHYLdjiZYXRfLJ2L7yeELSyGykBikMji3mP92oW1h'),
@@ -46,8 +46,20 @@ const UTXOMintToken = new avm.UTXO(
   assetId,
   new avm.SECPMintOutput(addresses)
 )
+UTXOWithMintToken.add(UTXOwithFounds)
+UTXOWithMintToken.add(UTXOMintToken)
+
+const UTXOWithToken = new avm.UTXOSet()
+const UTXOToken = new avm.UTXO(
+  codecID,
+  binTools.cb58Decode('2TKfT1LrPbHYLdjiZYXRfLJ2L7yeELSyGykBikMji3mP92oW1h'),
+  binTools.cb58Decode('111KgrGRw'),
+  assetId,
+  new avm.SECPTransferOutput(new BN(5), addresses)
+)
 UTXOWithToken.add(UTXOwithFounds)
 UTXOWithToken.add(UTXOMintToken)
+UTXOWithToken.add(UTXOToken)
 
 module.exports = {
   txid,
@@ -56,5 +68,6 @@ module.exports = {
   emptyUTXOSet,
   UTXOWithoutFee,
   UTXOWithoutToken,
+  UTXOWithMintToken,
   UTXOWithToken
 }
