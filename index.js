@@ -18,7 +18,7 @@ const avax = new AvaxLib()
 
 let _this // local global for 'this'.
 
-class BoilplateLib {
+class BchAvaxBridge {
   constructor () {
     _this = this
 
@@ -29,4 +29,4 @@ class BoilplateLib {
   }
 }
 
-module.exports = BoilplateLib
+module.exports = BchAvaxBridge
