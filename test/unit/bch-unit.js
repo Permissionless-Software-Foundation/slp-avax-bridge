@@ -1,6 +1,7 @@
 const chai = require('chai')
 const sinon = require('sinon')
 const cloneDeep = require('lodash.clonedeep')
+const config = require('../../config')
 
 // Locally global variables.
 const assert = chai.assert
@@ -20,11 +21,23 @@ describe('#bch.js', () => {
   beforeEach(() => {
     sandbox = sinon.createSandbox()
     mockData = cloneDeep(mockDataLib)
+    uut.config = { ...config }
   })
 
   afterEach(() => sandbox.restore())
 
   describe('#mintSlp', () => {
+    it('should throw an error if any environment variable is missing', async () => {
+      try {
+        const num = 10
+        uut.config.tokenID = undefined
+        await uut.mintSlp(num)
+        assert.fail('unexpected result')
+      } catch (err) {
+        assert.include(err.message, 'Missing environment')
+      }
+    })
+
     it('should throw an error if num is zero or less', async () => {
       try {
         const num = -10
@@ -136,6 +149,17 @@ describe('#bch.js', () => {
   })
 
   describe('#burnSlp', () => {
+    it('should throw an error if any environment variable is missing', async () => {
+      try {
+        const num = 10
+        uut.config.tokenID = undefined
+        await uut.burnSlp(num)
+        assert.fail('unexpected result')
+      } catch (err) {
+        assert.include(err.message, 'Missing environment')
+      }
+    })
+
     it('should throw an error if num is zero or less', async () => {
       try {
         const num = -14

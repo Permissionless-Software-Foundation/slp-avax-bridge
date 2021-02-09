@@ -19,10 +19,7 @@ describe('#avax.js', () => {
   let mockData
 
   beforeEach(() => {
-    // Restore the sandbox before each test.
     sandbox = sinon.createSandbox()
-
-    // Clone the mock data.
     mockData = cloneDeep(mockDataLib)
     uut.config = { ...config }
   })
@@ -68,6 +65,12 @@ describe('#avax.js', () => {
     it('should throw an error if there are no UTXOS', async () => {
       try {
         sandbox
+          .stub(uut.xchain.keyChain(), 'getAddresses')
+          .returns(mockData.addresses)
+        sandbox
+          .stub(uut.xchain.keyChain(), 'getAddressStrings')
+          .returns(mockData.addressStrings)
+        sandbox
           .stub(uut.xchain, 'getUTXOs')
           .resolves({ utxos: mockData.emptyUTXOSet })
 
@@ -82,6 +85,12 @@ describe('#avax.js', () => {
 
     it('should throw an error if the wallet doesnt have enought founds', async () => {
       try {
+        sandbox
+          .stub(uut.xchain.keyChain(), 'getAddresses')
+          .returns(mockData.addresses)
+        sandbox
+          .stub(uut.xchain.keyChain(), 'getAddressStrings')
+          .returns(mockData.addressStrings)
         sandbox
           .stub(uut.xchain, 'getUTXOs')
           .resolves({ utxos: mockData.UTXOWithoutFee })
@@ -98,6 +107,12 @@ describe('#avax.js', () => {
     it('should throw an error if the wallet doesnt have an UTXO with the token', async () => {
       try {
         sandbox
+          .stub(uut.xchain.keyChain(), 'getAddresses')
+          .returns(mockData.addresses)
+        sandbox
+          .stub(uut.xchain.keyChain(), 'getAddressStrings')
+          .returns(mockData.addressStrings)
+        sandbox
           .stub(uut.xchain, 'getUTXOs')
           .resolves({ utxos: mockData.UTXOWithoutToken })
 
@@ -112,6 +127,12 @@ describe('#avax.js', () => {
 
     it('should complete successfully', async () => {
       try {
+        sandbox
+          .stub(uut.xchain.keyChain(), 'getAddresses')
+          .returns(mockData.addresses)
+        sandbox
+          .stub(uut.xchain.keyChain(), 'getAddressStrings')
+          .returns(mockData.addressStrings)
         sandbox
           .stub(uut.xchain, 'getUTXOs')
           .resolves({ utxos: mockData.UTXOWithToken })
