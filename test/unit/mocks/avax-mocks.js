@@ -69,5 +69,6 @@ module.exports = {
   UTXOWithoutFee,
   UTXOWithoutToken,
   UTXOWithMintToken,
-  UTXOWithToken
+  UTXOWithToken,
+  avaxID
 }

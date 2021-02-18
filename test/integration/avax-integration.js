@@ -35,4 +35,18 @@ describe('#avax.js', () => {
       }
     })
   })
+
+  describe('#writeMemo', () => {
+    it('should create a transaction with some dust an a custom message in the memo field', async () => {
+      try {
+        const key = uut.config.AVAX_PRIVATE_KEY
+        const txid = await uut.writeMemo('Memo field for the integration test', key)
+
+        assert.typeOf(txid, 'string')
+      } catch (err) {
+        console.log(err)
+        assert.fail('unexpected result')
+      }
+    })
+  })
 })
