@@ -13,6 +13,20 @@ const assetId = binTools.cb58Decode(config.AVAX_TOKEN)
 
 const txid = 'aCvBmRoD6ARCXjCVJqEHWnrVeH6Ax5Mon5pYgRuz18RnZtWrw'
 
+const cb58Transaction =
+  '111113Ky5vtkcKJm8fbCGdyTHaqpVnZv1zy6RrcZce7YgCZfYeH297zgyE5XQCkWeU' +
+  'swpzQAaxiQb65pNX4U9kYQxsD6W58aoxFR7CoNN4j7eikZ7AM8s2XUUt5LvgAC9VNp' +
+  'kBjcurMjninNgcH7KeXKNij6EVVNC6hrU6ZJZmP86tM1DE9ho2FukS5iaYSmkQrUqM' +
+  'QvBaHDooU73wVZP9smUncU8KAHo4ii3CAhfxDfoZkYv3PHJ6mSeEznswWTVPEGDwc7' +
+  'aNEToab2ExU59QXZ75Emq1D8FLr5jDVnhdjSCUqevqm2sbxJDU2iyxCpfjXhE5XG73' +
+  '8igrBeuF2m5cvqheJ2ZW2S11hVkYr2GkCUroSzuf1RuYXk8YN8sz8qkb4MbjqHBQqw' +
+  'wcx2rAw3iU7FyXvjmra36xK9WY9uTRDgdzhC4KnHDbzf7aogtbWYPpLU1gyJGqQUww' +
+  '1iKBwHNdiVMRMY9KUcG7xCjCmWJsWzYzcFcAv71ZyxmmzNJFHEGnEkofqXLZwGyJQH' +
+  'LDqhRtGD7jiJg2XBSTX6DH169vPVzkAid3xzFEo9GTgGEHYfzMB961Lv7EUkqD7SbJ' +
+  '4ieA35NR7geNe8DQpqpELATpaDno4j9C98M8PCB4CEzQ6LRxyrtYuy5eqA9mpeYcKy' +
+  '4vH8vmxw1soDTFgE5AsWcU2Ej5pZfJiZsMtRWaJvigmtpSrvrc8E8gnbnVqjBu52ga' +
+  'py4t21SrMSM3ecsaJn6bzdVPFuZ95fJ99KJA8QyQ1M'
+
 // UTXOS and UTXOSets
 const emptyUTXOSet = new avm.UTXOSet()
 
@@ -70,5 +84,6 @@ module.exports = {
   UTXOWithoutToken,
   UTXOWithMintToken,
   UTXOWithToken,
-  avaxID
+  avaxID,
+  cb58Transaction
 }

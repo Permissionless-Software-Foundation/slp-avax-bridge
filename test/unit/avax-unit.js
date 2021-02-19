@@ -411,4 +411,47 @@ describe('#avax.js', () => {
       }
     })
   })
+
+  describe('#readMemo', () => {
+    it('should throw an error if there are missing environment variables', async () => {
+      try {
+        uut.config.AVAX_TOKEN = undefined
+        await uut.readMemo(42)
+        assert.fail('unexpected result')
+      } catch (err) {
+        assert.include(err.message, 'Missing environment')
+      }
+    })
+
+    it('should throw an error if the transaction id is not a string', async () => {
+      try {
+        await uut.readMemo(42)
+        assert.fail('unexpected result')
+      } catch (err) {
+        assert.include(err.message, 'must be of type string')
+      }
+    })
+
+    it('should throw an error if the transaction id is invalid', async () => {
+      try {
+        sandbox.stub(uut.xchain, 'getTx').rejects(false)
+
+        await uut.readMemo('somethingsomething')
+        assert.fail('unexpected result')
+      } catch (err) {
+        assert.include(err.message, 'ID is invalid')
+      }
+    })
+
+    it('should complete successfully', async () => {
+      try {
+        sandbox.stub(uut.xchain, 'getTx').resolves(mockData.cb58Transaction)
+
+        const txid = await uut.readMemo(mockData.txid)
+        assert.typeOf(txid, 'string')
+      } catch (err) {
+        assert.fail('unexpected result')
+      }
+    })
+  })
 })

@@ -49,4 +49,16 @@ describe('#avax.js', () => {
       }
     })
   })
+
+  describe('#readMemo', () => {
+    it('should read the memo field in a transaction', async () => {
+      try {
+        const memo = await uut.readMemo('Byo1Brzg5Sg9p73o2Mv5Yd2P5GPJLYetMWVtwSL2j3AHVkRAA')
+        assert.typeOf(memo, 'string')
+      } catch (err) {
+        console.log(err)
+        assert.fail('unexpected result')
+      }
+    })
+  })
 })
