@@ -1,15 +1,20 @@
-const config = require('../../../config')
-
 const { BN, BinTools } = require('avalanche')
 const avm = require('avalanche/dist/apis/avm')
 const binTools = BinTools.getInstance()
 
-const addressStrings = ['X-avax13c29zyftvjfs4un7aekjm8yn6vpsn3czug7l6e']
-const addresses = [binTools.cb58Decode('DxFHsGqRDGW77gmLYCEWvoWkZUkvUTLj5')]
+const fakeConfig = {
+  AVAX_IP: 'localhost',
+  AVAX_PORT: '4650',
+  AVAX_PRIVATE_KEY:
+    'PrivateKey-kXESwYRt4TkPXG4A9EXx1pXqP2aMUcGYTBpAGZxuKjyCwvVP',
+  AVAX_TOKEN: '2jgTFB6MM4vwLzUNWFYGPfyeQfpLaEqj4XWku6FoW7vaGrrEd5'
+}
+const addressStrings = ['X-avax1d73xzy6tqchgxrdr0um3hjae0qzpyvp2x5j9as']
+const addresses = [binTools.cb58Decode('BBGXbg6d3RGvxh5xGURCjNMo3pJTorfrF')]
 
 const avaxString = 'FvwEAhmxKfeiG8SnEvq42hc6whRyY3EFYAvebMqDNDGCgxN5Z'
 const avaxID = binTools.cb58Decode(avaxString)
-const assetId = binTools.cb58Decode(config.AVAX_TOKEN)
+const assetId = binTools.cb58Decode(fakeConfig.AVAX_TOKEN)
 
 const txid = 'aCvBmRoD6ARCXjCVJqEHWnrVeH6Ax5Mon5pYgRuz18RnZtWrw'
 
@@ -85,5 +90,6 @@ module.exports = {
   UTXOWithMintToken,
   UTXOWithToken,
   avaxID,
-  cb58Transaction
+  cb58Transaction,
+  fakeConfig
 }
