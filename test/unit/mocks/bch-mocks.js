@@ -1,5 +1,12 @@
 'use strict'
 
+const fakeConfig = {
+  network: 'mainnet',
+  networkURL: 'https://api.fullstack.cash/v4/',
+  tokenID: '600ee24d0f208aebc2bdd2c4ee1b9acb6d57343561442e8676b5bbea311d5a0f',
+  WIF: 'L5EDpCV9UURj6FhMo7CZk4QsH95orcVsm2qjKirngaXgeA3A6ZhZ'
+}
+
 const mockUtxos = {
   success: true,
   utxos: []
@@ -181,5 +188,6 @@ module.exports = {
   mockTokenlessUtxos,
   mockNotEnoughBalance,
   mockValidUtxos,
-  mockTxid
+  mockTxid,
+  fakeConfig
 }

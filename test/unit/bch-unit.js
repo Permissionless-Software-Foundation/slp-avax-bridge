@@ -1,7 +1,6 @@
 const chai = require('chai')
 const sinon = require('sinon')
 const cloneDeep = require('lodash.clonedeep')
-const config = require('../../config')
 
 // Locally global variables.
 const assert = chai.assert
@@ -21,7 +20,7 @@ describe('#bch.js', () => {
   beforeEach(() => {
     sandbox = sinon.createSandbox()
     mockData = cloneDeep(mockDataLib)
-    uut.config = { ...config }
+    uut.config = { ...mockData.fakeConfig }
   })
 
   afterEach(() => sandbox.restore())
