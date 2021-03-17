@@ -453,4 +453,24 @@ describe('#avax.js', () => {
       }
     })
   })
+
+  describe('#parseMemoFrom64', () => {
+    it('should throw an error if there encodedMemo argument is not a string', async () => {
+      try {
+        await uut.parseMemoFrom64(42)
+        assert.fail('unexpected result')
+      } catch (err) {
+        assert.include(err.message, 'must be of type string')
+      }
+    })
+
+    it('should return the pased memo field', async () => {
+      try {
+        const memo = uut.parseMemoFrom64('U29tZSBtZW1vIHRvIGNoZWNrIGFmdGVy')
+        assert.typeOf(memo, 'string')
+      } catch (err) {
+        assert.fail('unexpected result')
+      }
+    })
+  })
 })
