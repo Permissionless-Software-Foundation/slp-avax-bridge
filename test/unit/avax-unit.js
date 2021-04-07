@@ -144,7 +144,7 @@ describe('#avax.js', () => {
 
         const num = 10
 
-        const txid = await uut.mintToken(num)
+        const txid = await uut.mintToken(num, mockData.addressStrings[0])
         assert.typeOf(txid, 'string')
       } catch (err) {
         assert.fail('unexpected result')
@@ -468,6 +468,44 @@ describe('#avax.js', () => {
       try {
         const memo = uut.parseMemoFrom64('U29tZSBtZW1vIHRvIGNoZWNrIGFmdGVy')
         assert.typeOf(memo, 'string')
+      } catch (err) {
+        assert.fail('unexpected result')
+      }
+    })
+  })
+
+  describe('#getValidAddress', () => {
+    it('should return the fallback value if no wallet is provided', () => {
+      try {
+        const addr = mockData.addressStrings[0]
+        const buffer = uut.xchain.parseAddress(addr)
+        const resObj = uut.getValidAddress('', buffer)
+
+        assert.equal(resObj, buffer)
+      } catch (err) {
+        assert.fail('unexpected result')
+      }
+    })
+
+    it('should return the fallback value if the wallet is invalid', () => {
+      try {
+        const addr = mockData.addressStrings[0]
+        const buffer = uut.xchain.parseAddress(addr)
+        const resObj = uut.getValidAddress('clearlynotavalidaddress', buffer)
+
+        assert.equal(resObj, buffer)
+      } catch (err) {
+        assert.fail('unexpected result')
+      }
+    })
+
+    it('should return the buffer for the provided address', () => {
+      try {
+        const addr = mockData.addressStrings[0]
+        const address = uut.getValidAddress(addr, null)
+        const addrFromBuffer = uut.xchain.addressFromBuffer(address)
+
+        assert.equal(addrFromBuffer, addr)
       } catch (err) {
         assert.fail('unexpected result')
       }

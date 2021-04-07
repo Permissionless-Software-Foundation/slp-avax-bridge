@@ -267,4 +267,36 @@ describe('#bch.js', () => {
       assert.typeOf(txid, 'string')
     })
   })
+
+  describe('#getValidAddress', () => {
+    it('should return the fallback value if no wallet is provided', () => {
+      try {
+        const resObj = uut.getValidAddress('', mockData.legacy)
+
+        assert.equal(resObj, mockData.legacy)
+      } catch (err) {
+        assert.fail('unexpected result')
+      }
+    })
+
+    it('should return the fallback value if the wallet is invalid', () => {
+      try {
+        const resObj = uut.getValidAddress('clearlynotavalidaddress', mockData.legacy)
+
+        assert.equal(resObj, mockData.legacy)
+      } catch (err) {
+        assert.fail('unexpected result')
+      }
+    })
+
+    it('should return the buffer for the provided address', () => {
+      try {
+        const address = uut.getValidAddress(mockData.bchaddr, 'shouldntreturnthisvalue')
+
+        assert.equal(address, mockData.legacy)
+      } catch (err) {
+        assert.fail('unexpected result', err)
+      }
+    })
+  })
 })

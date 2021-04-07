@@ -7,6 +7,9 @@ const fakeConfig = {
   WIF: 'L5EDpCV9UURj6FhMo7CZk4QsH95orcVsm2qjKirngaXgeA3A6ZhZ'
 }
 
+const bchaddr = 'bitcoincash:qp0ycph7q3el9cdq2n84trdfck3vdcn4mq0sxrq0sz'
+const legacy = '19bbbW974ijAB5rZtAqmkyaYkb2JpPwwpv'
+
 const mockUtxos = {
   success: true,
   utxos: []
@@ -189,5 +192,7 @@ module.exports = {
   mockNotEnoughBalance,
   mockValidUtxos,
   mockTxid,
+  bchaddr,
+  legacy,
   fakeConfig
 }
