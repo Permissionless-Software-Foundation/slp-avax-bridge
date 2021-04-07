@@ -2,7 +2,7 @@
   "name": "slp-avax-bridge",
   "version": "1.0.0",
   "description": "A node.js JavaScript library for transfering tokens between BCH and AVAX blockchains.",
-  "main": "index.js",
+  "main": "index.js", 
   "scripts": {
     "start": "node index.js",
     "test": "npm run lint && TEST=unit nyc mocha test/unit/",
@@ -36,7 +36,7 @@
   "dependencies": {
     "@psf/bch-js": "^4.5.4",
     "apidoc": "^0.25.0",
-    "avalanche": "^3.1.0",
+    "avalanche": "^3.2.5",
     "bch-util": "^1.2.5"
   },
   "devDependencies": {
