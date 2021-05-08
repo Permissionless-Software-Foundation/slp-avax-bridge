@@ -64,4 +64,7 @@ database/
 system-user-*.json
 run-test.sh
 
+start-avax-bridge.sh
+wallet.json
+
 !README.md
